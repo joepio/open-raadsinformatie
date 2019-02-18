@@ -24,7 +24,7 @@ class MediaObject(Schema, owl.Thing):
     date_modified = DateTimeProperty(Schema, 'dateModified')
     original_url = StringProperty(Schema, 'isBasedOn')
     text = StringProperty(Schema, 'text')
-    classifications = Relation(Schema, 'classifications')
+    classifications = Relation(Schema, 'PropertyValue')
 
     enricher_task = 'file_to_text'
 
