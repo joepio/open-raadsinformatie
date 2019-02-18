@@ -96,6 +96,17 @@ class ExternalEnricher(BaseEnricher, HttpRequestMixin):
             log.error(
                 'Something unexpectedly went wrong uploading to %s: %s' % (
                     self.enricher_settings['url'], e,))
+        return self.process_upload_result(item, result)
+
+    def process_upload_result(self, item, result):
+        """
+        Processes the result that was retrieved from the external source.
+        """
+        raise NotImplementedError
+
+
+class ThemeClassifier(BaseExternalEnricher):
+    def process_upload_result(self, item, result):
         if result is not None:
             log.info('Got the following result:')
             log.info(result)

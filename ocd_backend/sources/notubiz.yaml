@@ -30,7 +30,7 @@ _entities: &entities
     enrichers:
     - - ocd_backend.enrichers.media_enricher.static.GCSStaticMediaEnricher
       - # reserved for enricher_settings
-    - - ocd_backend.enrichers.ExternalEnricher
+    - - ocd_backend.enrichers.ThemeClassifier
       - url: http://otc_nginx_1/classificeer
 
 _notubiz: &notubiz
