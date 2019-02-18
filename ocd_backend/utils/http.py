@@ -17,6 +17,7 @@ from ocd_backend.exceptions import InvalidFile, ItemAlreadyProcessed
 from ocd_backend.log import get_source_logger
 from ocd_backend.settings import TEMP_DIR_PATH
 from ocd_backend.settings import USER_AGENT, DATA_DIR_PATH
+from ocd_backend.utils import json_encoder
 from ocd_backend.utils.misc import localize_datetime, datetime_to_unixstamp, \
     str_to_datetime
 
@@ -125,6 +126,21 @@ class HttpRequestMixin(object):
             content_length,
             media_file
         )
+
+    def upload(self, url, doc, additional_headers={}):
+        r = {}
+        headers = {
+            'Content-type': 'application/json'}
+        headers.update(additional_headers)
+        try:
+            resp = self.http_session.post(
+                url, data=json_encoder.encode(doc),
+                headers=headers)
+            r = resp.json()
+        except Exception as e:
+            log.exception('Unexpected http upload error: %s'
+                          % (e.message,))
+        return r
 
 
 class LocalCachingMixin(HttpRequestMixin):
