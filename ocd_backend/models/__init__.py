@@ -52,7 +52,6 @@ MediaObject = definitions.schema.MediaObject
 ImageObject = definitions.schema.ImageObject
 CreativeWork = definitions.schema.CreativeWork
 PropertyValue = definitions.schema.PropertyValue
-PropertyValueFloat = definitions.schema.PropertyValueFloat
 EventCancelled = definitions.schema.EventCancelled
 
 # http://www.w3.org/ns/person#

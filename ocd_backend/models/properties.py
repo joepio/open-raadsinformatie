@@ -61,16 +61,6 @@ class IntegerProperty(Property):
             return int(value)
 
 
-class FloatProperty(Property):
-    """A property which defines an float type."""
-
-    @staticmethod
-    def sanitize(value):
-        """Force cast to float. This will fail by design if not castable to float"""
-        if value:
-            return float(value)
-
-
 class DateProperty(Property):
     """A property which defines a date type."""
 
