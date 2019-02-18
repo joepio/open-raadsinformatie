@@ -7,7 +7,7 @@ from ocd_backend.utils.http import HttpRequestMixin
 from ocd_backend.utils import json_encoder
 from ocd_backend.utils.misc import iterate, get_sha1_hash, doc_type
 from ocd_backend.models.serializers import JsonLDSerializer, JsonSerializer
-from ocd_backend.models import PropertyValue
+from ocd_backend.models import PropertyValue, PropertyValueFloat
 
 log = get_source_logger('enricher')
 
@@ -80,7 +80,7 @@ class DummyEnricher(BaseEnricher):
 
 class ExternalEnricher(BaseEnricher, HttpRequestMixin):
     def _make_property_value(self, k, v, item):
-        res = PropertyValue()
+        res = PropertyValueFloat()
         res.generate_ori_identifier()
         res.had_primary_source = item.had_primary_source
         res.name = k

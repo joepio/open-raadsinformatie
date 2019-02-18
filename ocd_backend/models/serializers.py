@@ -6,7 +6,8 @@ from ocd_backend.models.definitions import ALL, Rdf, Ori
 from ocd_backend.models.exceptions import SerializerError, SerializerNotFound, \
     RequiredProperty, MissingProperty
 from ocd_backend.models.properties import StringProperty, IntegerProperty, \
-    DateProperty, DateTimeProperty, ArrayProperty, Relation, OrderedRelation
+    FloatProperty, DateProperty, DateTimeProperty, ArrayProperty, Relation, \
+    OrderedRelation
 from ocd_backend.utils.misc import iterate, str_to_datetime, datetime_to_unixstamp
 
 
@@ -89,6 +90,9 @@ class BaseSerializer(object):
             return value
 
         elif type(prop) == IntegerProperty:
+            return value
+
+        elif type(prop) == FloatProperty:
             return value
 
         elif type(prop) == DateProperty or type(prop) == DateTimeProperty:
@@ -196,6 +200,9 @@ class RdfSerializer(BaseSerializer):
 
         elif type(prop) == IntegerProperty:
             return Literal(serialized, datatype=XSD.integer)
+
+        elif type(prop) == FloatProperty:
+            return Literal(serialized, datatype=XSD.float)
 
         elif type(prop) == DateTimeProperty:
             return Literal(serialized, datatype=XSD.dateTime)

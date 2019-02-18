@@ -6,7 +6,7 @@ import owl
 from ocd_backend.models.definitions import Schema, Opengov, Dbo
 from ocd_backend.models.model import Individual
 from ocd_backend.models.properties import StringProperty, IntegerProperty, \
-    DateTimeProperty, DateProperty, ArrayProperty, Relation
+    FloatProperty, DateTimeProperty, DateProperty, ArrayProperty, Relation
 
 
 class MediaObject(Schema, owl.Thing):
@@ -63,6 +63,14 @@ class ImageObject(Schema, owl.Thing):
 class PropertyValue(Schema, owl.Thing):
     name = StringProperty(Schema, 'name')
     value = StringProperty(Schema, 'value')
+
+
+class PropertyValueFloat(Schema, owl.Thing):
+    name = StringProperty(Schema, 'name')
+    value = FloatProperty(Schema, 'value')
+
+    def verbose_name(self):
+        return "PropertyValue"
 
 
 class Place(Schema, owl.Thing):
